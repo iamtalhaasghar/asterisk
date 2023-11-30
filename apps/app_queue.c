@@ -5454,6 +5454,8 @@ static struct callattempt *wait_for_answer(struct queue_ent *qe, struct callatte
 							/* This is our guy if someone answered. */
 							if (!peer) {
 								ast_verb(3, "%s answered %s\n", ochan_name, inchan_name);
+								play_file(qe->chan,strrchr(membername, '/')+1);  // agent greeting
+
 								ast_channel_publish_dial(qe->chan, o->chan, on, "ANSWER");
 								publish_dial_end_event(qe->chan, outgoing, o->chan, "CANCEL");
 								if (o->orig_chan_name
